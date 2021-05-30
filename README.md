@@ -145,6 +145,41 @@ export default {
 };
 ```
 
+## Bundling with Metro
+
+Metro is like Webpack. It bundles JavaScript.
+
+There are 3 stages to Metro:
+1. Resolution
+2. Transformation
+3. Serialisation
+
+If we wish to request a particular transformer for a file suffix, we have to modify both the resolution and transformation stages.
+
+If we have multiple requests, we can instruct Metro to customise a transformer for each file suffix resolved, via another module [Stackoverflow link here](https://stackoverflow.com/questions/57656845/configure-multiple-transformers-resolvers-using-metro).
+
+## Styling with `react-native-paper`
+
+MaterialUI works for React, but not for ReactNative. `react-native-paper` is hence an implementation of MaterialUI that works for ReactNative.
+
+### Fonts
+
+Custom fonts are loaded in ./assets/fonts. Then, we amend `react-native.config.js` to indicate that there are font files in that directory.
+
+```
+module.exports = {
+    project: {
+        ios: {},
+        android: {},
+    },
+    assets: ['./assets/fonts/'],
+};
+```
+
+The next thing is to create a link, using the command `react-native link` (or add `npx` to the command.)
+
+To set the custom font in react-native-paper's `Provider`, we can amend `DefaultTheme.fonts.<regular/medium etc.>.fontFamily`, or use the function `configureFonts` [link to function code here](https://github.com/callstack/react-native-paper/blob/main/src/styles/fonts.tsx).
+
 ## Hooks
 The following applies to not just ReactNative, but also React.
 

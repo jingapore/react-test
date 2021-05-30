@@ -12,9 +12,9 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text, 
-  TextInput, 
+  TextInput,
   StatusBar,
+  Text
 } from 'react-native';
 
 import {
@@ -24,95 +24,105 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
 import Animated from "./Animated";
 
-const App: () => React$Node = () => {
+import { configureFonts, DefaultTheme, Provider as PaperProvider, Button, Card, Title, Paragraph, Surface, Paper } from 'react-native-paper';
+
+const fontConfig = {
+  web: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+  ios: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'normal',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'normal',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'normal',
+    },
+  },
+  android: {
+    regular: {
+      fontFamily: 'sans-serif',
+      fontWeight: 'bold',
+      fontColor: "blue"
+    },
+    medium: {
+      fontFamily: 'sans-serif-medium',
+      fontWeight: 'bold',
+    },
+    light: {
+      fontFamily: 'sans-serif-light',
+      fontWeight: 'bold',
+    },
+    thin: {
+      fontFamily: 'sans-serif-thin',
+      fontWeight: 'bold',
+    },
+  }
+};
+
+const theme = {
+  ...DefaultTheme,
+  roundness: 20,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#3498db',
+    accent: '#f1c40f',
+  },
+  fontFamily: {...DefaultTheme.fonts.medium.fontFamily = 'SquadaOne-Regular'} 
+};
+
+const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-              <TextInput style={{height:40, borderColor:"gray", borderWidth:1}}/>
-              <Animated/>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <PaperProvider theme={theme}>
+        <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
+          <Text>Hello, world!?</Text>
+          <Button mode="contained">Press Me!</Button>
+          <Text>This has no style.</Text>
+        </View>
+        <Card>
+          <Card.Content>
+            <Title>title</Title>
+            <Paragraph>content</Paragraph>
+          </Card.Content>
+        </Card>
+    </PaperProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  paper: {
+    padding: 8,
+    height: 80,
+    width: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 4,
   },
 });
 
